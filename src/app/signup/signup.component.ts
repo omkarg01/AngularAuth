@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -11,5 +11,8 @@ import { Title } from '@angular/platform-browser';
 export class SignupComponent {
   constructor(private titleService: Title) {
     this.titleService.setTitle('Sing Up');
+  }
+
+  ngOnInit() {
   }
 }
