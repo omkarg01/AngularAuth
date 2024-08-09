@@ -2,12 +2,9 @@ import { Routes } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { UserExistComponent } from './user-exist/user-exist.component';
+import { CounterComponent } from './counter/counter.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: UserExistComponent,
-  },
   {
     path: 'signup',
     component: SignupComponent,
@@ -17,4 +14,8 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+  {
+    path: 'counter',
+    component: CounterComponent
+  }
 ];
