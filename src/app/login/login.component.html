@@ -1,6 +1,7 @@
 <button (click)="goBack()">Back</button>
 <br>
 
+<h1>Welcome Back, {{$name | async}}</h1>
 <div *ngIf="($detailType | async) === 'email'; else phoneTemplate">
     <label for="email">Email : </label>
     <input id="email" type="text" [formControl]="emailOrPhone">

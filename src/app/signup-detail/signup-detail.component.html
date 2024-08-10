@@ -1,0 +1,31 @@
+<button>Back</button>
+<form [formGroup]="signupDetailsForm" (ngSubmit)="onSubmit()">
+    <label for="orgName">Organization Name : </label>
+    <input id="orgName" type="text" formControlName="orgName">
+    <br>
+
+    <label for="orgId">Organization id : </label>
+    <input id="orgId" type="text" formControlName="orgId">
+    <br>
+
+    <label for="designation">Designation : </label>
+    <input id="designation" type="text" formControlName="designation">
+
+    <br>
+    <label for="birthDate">Birth Date : </label>
+    <input id="birthDate" type="date" formControlName="birthDate">
+
+    <br>
+    <div>
+        <span>
+            <label for="city">City : </label>
+            <input id="city" type="text" formControlName="city">
+        </span>
+        <span>
+            <label for="pincode">Pincode : </label>
+            <input id="pincode" type="number" formControlName="pincode">
+        </span>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>

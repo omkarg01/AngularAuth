@@ -46,30 +46,22 @@ export class UserExistComponent {
     }
   }
 
-  ngOnInit() {
-    // this.mockDataService
-    //   .getUsers()
-    //   .subscribe((result) => console.log('allUsers', result));
-    // this.route.queryParams.subscribe((params) => {
-    //   if ('email' in params) {
-    //     this.email.patchValue(params['email']);
-    //     console.log('Email ID:', params['email']);
-    //   }
-    // });
-  }
+  ngOnInit() {}
 
   next() {
     console.log('form email', this.email.value);
     console.log('form phone', this.phone.value);
     if (this.email.value) {
       this.mockDataService.userExist(this.email.value).subscribe((result) => {
-        if (result) {
-          this.store.dispatch(
-            setUserDetail({
-              userDetail: this.email.value || '',
-              detailType: 'email',
-            })
-          );
+        console.log("result", result);
+        this.store.dispatch(
+          setUserDetail({
+            userDetail: this.email.value || '',
+            detailType: 'email',
+            name: result.user?.name
+          })
+        );
+        if (result.exists) {
           this.router.navigate(['/login']);
         } else {
           this.router.navigate(['/signup']);
@@ -77,21 +69,19 @@ export class UserExistComponent {
       });
     } else if (this.phone.value) {
       this.mockDataService.userExist(this.phone.value).subscribe((result) => {
-        if (result) {
-          this.store.dispatch(
-            setUserDetail({
-              userDetail: this.phone.value || '',
-              detailType: 'phone',
-            })
-          );
+        this.store.dispatch(
+          setUserDetail({
+            userDetail: this.phone.value || '',
+            detailType: 'phone',
+            name: result.user?.name
+          })
+        );
+        if (result.exists) {
           this.router.navigate(['/login']);
         } else {
-          this.router.navigate(['/singup']);
+          this.router.navigate(['/signup']);
         }
       });
     }
   }
-
-
-  
 }

@@ -4,6 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { UserExistComponent } from './user-exist/user-exist.component';
 import { CounterComponent } from './counter/counter.component';
 import { LoginSuccessComponent } from './login-success/login-success.component';
+import { SignupDetailComponent } from './signup-detail/signup-detail.component';
+import { SignupSuccessComponent } from './signup-success/signup-success.component';
 
 export const routes: Routes = [
   {
@@ -25,5 +27,13 @@ export const routes: Routes = [
   {
     path: 'counter',
     component: CounterComponent,
+  },
+  {
+    path: 'signup-details',
+    component: SignupDetailComponent,
+  },
+  {
+    path: 'signup-success',
+    component: SignupSuccessComponent,
   },
 ];

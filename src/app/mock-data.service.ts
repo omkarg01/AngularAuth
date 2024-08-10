@@ -7,39 +7,41 @@ import { Injectable } from '@angular/core';
   providedIn: 'root', // This ensures the service is available app-wide
 })
 export class MockDataService {
-  private usersUrl = 'assets/users.json';
+  private users: User[] = [
+    { email: 'test@example.com', name: 'Name', password: 'password123' },
+    { phone: '1234567890', name: 'OG', password: 'password456' },
+  ];
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   getUsers(): Observable<User[]> {
-    return this.http
-      .get<User[]>(this.usersUrl)
-      .pipe(catchError(this.handleError<User[]>('getUsers', [])));
+    return of(this.users);
   }
 
-  userExist(emailOrPhone: string): Observable<boolean> {
-    return this.getUsers().pipe(
-      map((users) =>
-        users.some(
-          (user) => user.email === emailOrPhone || user.phone === emailOrPhone
-        )
-      )
-    );
+  addUser(user: User): Observable<User[]> {
+    this.users.push(user);
+    return of(this.users);
+  }
+
+  userExist(emailOrPhone: string): Observable<{ exists: boolean; user?: User }> {
+    let foundUser: User | undefined;
+    const exists = this.users.some((user) => {
+      foundUser = user;
+      return user.email === emailOrPhone || user.phone === emailOrPhone;
+    });
+    return of({ exists, user: foundUser });
   }
 
   validatePassword(
     emailOrPhone: string,
     password: string
   ): Observable<boolean> {
-    return this.getUsers().pipe(
-      map((users) =>
-        users.some(
-          (user) =>
-            (user.email === emailOrPhone || user.phone === emailOrPhone) &&
-            user.password === password
-        )
-      )
+    const valid = this.users.some(
+      (user) =>
+        (user.email === emailOrPhone || user.phone === emailOrPhone) &&
+        user.password === password
     );
+    return of(valid);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

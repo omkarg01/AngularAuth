@@ -13,7 +13,8 @@ export const loadUsersFailure = createAction(
   props<{ error: string }>() // Include error message or details
 );
 
-
-
-export const setUserDetail = createAction('[Login] Set User Detail', props<{ userDetail: string, detailType: 'email' | 'phone' }>());
+export const setUserDetail = createAction(
+  '[Login] Set User Detail',
+  props<{ userDetail: string; detailType: string; name?: string }>()
+);
 export const clearUserDetail = createAction('[Login] Clear User Detail');

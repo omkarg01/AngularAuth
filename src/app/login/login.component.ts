@@ -20,6 +20,7 @@ import { User } from '../store/models/user.model';
 export class LoginComponent {
   $detailType: Observable<string>;
   $userDetail: Observable<string>;
+  $name: Observable<string | undefined>;
   userDetail!: string;
   detailType!: string;
   emailOrPhone = new FormControl('');
@@ -37,6 +38,7 @@ export class LoginComponent {
     this.titleService.setTitle('Login');
     this.$userDetail = this.store.select((state) => state.auth.userDetail);
     this.$detailType = this.store.select((state) => state.auth.detailType);
+    this.$name = this.store.select((state) => state.auth.name);
     this.$detailType.subscribe((state) => (this.detailType = state));
     this.$userDetail.subscribe((state) => (this.userDetail = state));
 

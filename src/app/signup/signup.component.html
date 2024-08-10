@@ -2,12 +2,19 @@
 <button (click)="goBack()">Back</button>
 <br>
 
-<label for="email">Email : </label>
-<input id="email" type="text" [formControl]="email">
+<div *ngIf="($detailType | async) === 'email'; else phoneTemplate">
+    <label for="email">Email : </label>
+    <input id="email" type="text" [formControl]="emailOrPhone">
+</div>
 <br>
 
-<label for="fullName">Full Name : </label>
-<input id="fullName" type="text" [formControl]="fullName">
+<ng-template #phoneTemplate>
+    <label for="phone">Phone : </label>
+    <input id="phone" type="text" [formControl]="emailOrPhone">
+</ng-template>
+
+<label for="name">Full Name : </label>
+<input id="name" type="text" [formControl]="name">
 <br>
 
 <label for="phone">Password : </label>
