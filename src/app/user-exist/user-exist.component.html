@@ -1,1 +1,7 @@
-<p>user-exist works!</p>
+<label for="email">Email : </label>
+<input id="email" type="text" [formControl]="email">
+<p>(OR)</p>
+<label for="phone">Phone : </label>
+<input id="phone" type="text" [formControl]="phone">
+<br>
+<button (click)="next()">Next</button>

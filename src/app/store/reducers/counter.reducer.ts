@@ -4,7 +4,7 @@ import {
   increment,
   incrementByAmount,
   reset,
-} from '../actions/action.reducer';
+} from '../actions/counter.action';
 
 export type InitalState = {
   value: number;

@@ -1,1 +1,17 @@
 <p>signup works!</p>
+<button (click)="goBack()">Back</button>
+<br>
+
+<label for="email">Email : </label>
+<input id="email" type="text" [formControl]="email">
+<br>
+
+<label for="fullName">Full Name : </label>
+<input id="fullName" type="text" [formControl]="fullName">
+<br>
+
+<label for="phone">Password : </label>
+<input id="phone" type="password" [formControl]="password">
+
+<br>
+<button (click)="next()">Next</button>

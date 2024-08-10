@@ -8,7 +8,7 @@ import {
   increment,
   incrementByAmount,
   reset,
-} from '../store/actions/action.reducer';
+} from '../store/actions/counter.action';
 
 @Component({
   selector: 'app-counter',

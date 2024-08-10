@@ -1,1 +1,21 @@
-<p>login works!</p>
+<button (click)="goBack()">Back</button>
+<br>
+
+<div *ngIf="($detailType | async) === 'email'; else phoneTemplate">
+    <label for="email">Email : </label>
+    <input id="email" type="text" [formControl]="emailOrPhone">
+</div>
+<br>
+
+<ng-template #phoneTemplate>
+    <label for="phone">Phone : </label>
+    <input id="phone" type="text" [formControl]="emailOrPhone">
+</ng-template>
+
+<br>
+
+<label for="phone">Password : </label>
+<input id="phone" type="password" [formControl]="password">
+
+<br>
+<button (click)="next()">Next</button>
