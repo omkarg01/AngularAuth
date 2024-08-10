@@ -15,6 +15,6 @@ export const loadUsersFailure = createAction(
 
 export const setUserDetail = createAction(
   '[Login] Set User Detail',
-  props<{ userDetail: string; detailType: string; name?: string }>()
+  props<{ userDetail: string; detailType: string; name: string }>()
 );
 export const clearUserDetail = createAction('[Login] Clear User Detail');

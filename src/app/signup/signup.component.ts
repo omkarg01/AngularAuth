@@ -8,6 +8,7 @@ import { state } from '@angular/animations';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MockDataService } from '../mock-data.service';
+import { setUserDetail } from '../store/actions/auth.action';
 
 @Component({
   selector: 'app-signup',
@@ -53,8 +54,17 @@ export class SignupComponent {
           name: this.name.value,
           password: this.password.value,
         })
-        .subscribe((result) => console.log('user updated', result));
+        .subscribe((result) => {
+          console.log('user updated', result);
+          this.store.dispatch(
+            setUserDetail({
+              userDetail: this.userDetail,
+              detailType: this.detailType,
+              name: this.name.value || '',
+            })
+          );
+          this.router.navigate(['/signup-details']);
+        });
     }
-    this.router.navigate(['/signup-details']);
   }
 }

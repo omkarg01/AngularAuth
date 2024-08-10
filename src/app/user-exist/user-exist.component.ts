@@ -58,7 +58,7 @@ export class UserExistComponent {
           setUserDetail({
             userDetail: this.email.value || '',
             detailType: 'email',
-            name: result.user?.name
+            name: result.user?.name || ''
           })
         );
         if (result.exists) {
@@ -73,7 +73,7 @@ export class UserExistComponent {
           setUserDetail({
             userDetail: this.phone.value || '',
             detailType: 'phone',
-            name: result.user?.name
+            name: result.user?.name || ''
           })
         );
         if (result.exists) {
