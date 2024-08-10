@@ -12,6 +12,6 @@ export class SignupSuccessComponent {
   constructor(private router: Router) {
     setTimeout(() => {
       this.router.navigate(['/login']);
-    }, 2000);
+    }, 5000);
   }
 }
