@@ -1,7 +1,59 @@
-<label for="email">Email : </label>
+<!-- <label for="email">Email : </label>
 <input id="email" type="text" [formControl]="email">
 <p>(OR)</p>
 <label for="phone">Phone : </label>
 <input id="phone" type="text" [formControl]="phone">
 <br>
-<button (click)="next()">Next</button>
+<button (click)="next()">Next</button> -->
+
+<main class="flex overflow-hidden flex-col items-center px-16 pt-10 pb-10  shadow bg-sky-700 bg-opacity-50 ">
+    <section class="overflow-hidden pr-20 w-auto backdrop-blur-[5px] bg-neutral-100  max-md:pr-5 rounded-2xl">
+        <div class="flex gap-5 max-md:flex-col">
+            <div class="flex flex-col w-[57%] max-md:ml-0 max-md:w-full">
+                <div
+                    class="flex flex-col grow px-2 pt-7 pb-20 w-full bg-sky-500 bg-opacity-10 max-md:mt-10 max-md:max-w-full">
+                    <img loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/29af211ca535d12355851d1da799e01099ac267390c94b289120a93b1dac4979?placeholderIfAbsent=true&apiKey=55723c1937ee410f8c1a0d0f7546229b"
+                        alt="Company logo"
+                        class="object-contain ml-5 max-w-full aspect-[2.27] w-[118px] max-md:ml-2.5" />
+                    <img loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5dccf329db19f3f99b6154b6ac8b98ce93afb9aafb83f7b456adc7ff3290dca?placeholderIfAbsent=true&apiKey=55723c1937ee410f8c1a0d0f7546229b"
+                        alt="Illustration of account creation process"
+                        class="object-contain mt-16 w-full aspect-[0.93] max-md:mt-10" />
+                </div>
+            </div>
+            <div class="flex flex-col ml-5 w-[43%] max-md:ml-0 max-md:w-full">
+                <div class="flex flex-col self-stretch my-auto max-md:mt-10">
+                    <div class="flex relative flex-col mt-9 w-full">
+                        <h1 class="self-start text-xl font-semibold text-gray-800">Welcome</h1>
+                        <form>
+                            <div
+                                class="flex z-0 flex-col mt-6 max-w-full text-xs font-semibold whitespace-nowrap w-[333px]">
+                                <label for="org-name" class="text-sky-600">Email Id : </label>
+                                <div class="flex flex-col mt-1 w-full max-w-[333px] text-neutral-500">
+                                    <input type="text" id="email" [formControl]="email" name="email"
+                                        placeholder="Loremipsum@gmail.com"
+                                        class="flex gap-2.5 justify-center items-center py-3.5 pr-24 pl-3.5 rounded-2xl bg-slate-200 min-h-[44px] max-md:pr-5 w-full" />
+                                </div>
+                            </div>
+                            <br>
+                            <p class="text-neutral-500">(OR)</p>
+                            <div
+                                class="flex z-0 flex-col mt-6 max-w-full text-xs font-semibold whitespace-nowrap w-[333px]">
+                                <label for="org-name" class="text-sky-600">Email Mobile No. : </label>
+                                <div class="flex flex-col mt-1 w-full max-w-[333px] text-neutral-500">
+                                    <input type="text" id="phone" [formControl]="phone" name="phone" placeholder="+91"
+                                        class="flex gap-2.5 justify-center items-center py-3.5 pr-24 pl-3.5 rounded-2xl bg-slate-200 min-h-[44px] max-md:pr-5 w-full" />
+                                </div>
+                            </div>
+                            <button type="submit" (click)="next()"
+                                class="gap-2.5 self-stretch p-2.5 mt-6 max-w-full text-xs font-semibold whitespace-nowrap bg-sky-600 rounded-2xl text-neutral-100 w-[332px]">
+                                Next
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

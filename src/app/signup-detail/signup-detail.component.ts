@@ -22,6 +22,7 @@ export class SignupDetailComponent {
   constructor(private router: Router) {}
 
   onSubmit() {
+    console.log(this.signupDetailsForm.value);
     console.log('Submitting...');
     this.router.navigate(['/signup-success']);
   }
