@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { AuthState } from '../store/reducers/auth.reducer';
 import { Store } from '@ngrx/store';
 import { state } from '@angular/animations';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MockDataService } from '../mock-data.service';
 import { setUserDetail } from '../store/actions/auth.action';
@@ -13,7 +13,7 @@ import { setUserDetail } from '../store/actions/auth.action';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
 })
