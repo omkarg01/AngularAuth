@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup-module/signup/signup.component';
+import { LoginComponent } from './login-module/login/login.component';
 import { UserExistComponent } from './user-exist/user-exist.component';
-import { LoginSuccessComponent } from './login-success/login-success.component';
-import { SignupDetailComponent } from './signup-detail/signup-detail.component';
-import { SignupSuccessComponent } from './signup-success/signup-success.component';
+import { LoginSuccessComponent } from './login-module/login-success/login-success.component';
+import { SignupDetailComponent } from './signup-module/signup-detail/signup-detail.component';
+import { SignupSuccessComponent } from './signup-module/signup-success/signup-success.component';
 
 export const routes: Routes = [
   {

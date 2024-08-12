@@ -2,13 +2,13 @@ import { Component, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { AuthState } from '../store/reducers/auth.reducer';
+import { AuthState } from '../../store/reducers/auth.reducer';
 import { Store } from '@ngrx/store';
 import { state } from '@angular/animations';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MockDataService } from '../mock-data.service';
-import { setUserDetail } from '../store/actions/auth.action';
+import { MockDataService } from '../../mock-data.service';
+import { setUserDetail } from '../../store/actions/auth.action';
 
 @Component({
   selector: 'app-signup',

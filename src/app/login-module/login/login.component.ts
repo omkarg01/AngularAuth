@@ -4,11 +4,11 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthState } from '../store/reducers/auth.reducer';
+import { AuthState } from '../../store/reducers/auth.reducer';
 import { Store } from '@ngrx/store';
 import { state } from '@angular/animations';
-import { MockDataService } from '../mock-data.service';
-import { User } from '../store/models/user.model';
+import { MockDataService } from '../../mock-data.service';
+import { User } from '../../store/models/user.model';
 
 @Component({
   selector: 'app-login',
