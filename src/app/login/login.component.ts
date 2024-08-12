@@ -67,7 +67,6 @@ export class LoginComponent {
           } else {
             this.passwordError = true;
             // alert('Passord is Incorrect!');
-            console.log('password is incoorect');
           }
         });
     }

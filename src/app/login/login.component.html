@@ -73,15 +73,28 @@
                                 <label for="org-name" class="text-sky-600">Enter Password : </label>
                                 <div class="flex flex-col mt-1 w-full max-w-[333px] text-neutral-500">
                                     <input type="password" id="password" [formControl]="password" name="password"
-                                        placeholder="Password"
-                                        (focus)="passwordError = false"
+                                        placeholder="Password" (focus)="passwordError = false"
                                         [ngStyle]="{'border': passwordError ? '1px solid #f87171' : '1px solid transparent'}"
                                         class="flex gap-2.5 justify-center items-center py-3.5 pr-24 pl-3.5 rounded-2xl bg-slate-200 min-h-[44px] max-md:pr-5 w-full" />
                                 </div>
                                 <br>
-                                <p *ngIf="passwordError" class="text-red-500 mt-1">Incorrect password. Please try again!</p>
+                                <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                                    class="text-red-500">
+                                    <div *ngIf="password.errors?.['required']">Password is required.</div>
+                                    <div *ngIf="password.errors?.['minlength']">
+                                        Name must be at least 8 characters long.
+                                    </div>
+                                </div>
+                                <p *ngIf="passwordError" class="text-red-500 mt-1">Incorrect password. Please try again!
+                                </p>
                             </div>
-                            <button type="submit" (click)="next($event)"
+                            <button type="submit" (click)="next($event)" [disabled]="password.invalid"
+                                [ngClass]="{ 
+                                'bg-sky-600 text-neutral-100': !password.invalid,
+                                'bg-gray-400 text-gray-200': password.invalid,
+                                'cursor-pointer': !password.invalid,
+                                'cursor-not-allowed opacity-70': password.invalid
+                              }"
                                 class="gap-2.5 self-stretch p-2.5 mt-6 max-w-full text-xs font-semibold whitespace-nowrap bg-sky-600 rounded-2xl text-neutral-100 w-[332px]">
                                 Next
                             </button>

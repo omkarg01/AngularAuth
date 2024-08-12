@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -12,20 +17,25 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class SignupDetailComponent {
   signupDetailsForm = new FormGroup({
-    orgName: new FormControl(''),
-    orgId: new FormControl(''),
-    designation: new FormControl(''),
-    birthDate: new FormControl(''),
-    city: new FormControl(''),
-    pincode: new FormControl(''),
+    orgName: new FormControl('', [Validators.required]),
+    orgId: new FormControl('', [Validators.required]),
+    designation: new FormControl('', [Validators.required]),
+    birthDate: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
+    pincode: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
   });
 
   constructor(private router: Router) {}
 
-  onSubmit(e:Event) {
-    e.preventDefault()
+  onSubmit(e: Event) {
+    e.preventDefault();
     console.log(this.signupDetailsForm.value);
-    console.log('Submitting...');
-    this.router.navigate(['/signup-success']);
+    if (this.signupDetailsForm.valid) {
+      console.log('Submitting...');
+      this.router.navigate(['/signup-success']);
+    }
   }
 }

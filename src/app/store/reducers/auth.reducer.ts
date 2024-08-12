@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { User } from '../models/user.model';
-import { loadUsersSuccess, setUserDetail } from '../actions/auth.action';
+import { setUserDetail } from '../actions/auth.action';
 
 export type AuthState = {
   name?: string;

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { AuthState } from '../store/reducers/auth.reducer';
@@ -19,8 +19,8 @@ import { setUserDetail } from '../store/actions/auth.action';
 })
 export class SignupComponent {
   emailOrPhone = new FormControl('');
-  name = new FormControl('');
-  password = new FormControl('');
+  name = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required, Validators.minLength(8)]);
   detailType!: string;
   userDetail!: string;
   $detailType: Observable<string>;

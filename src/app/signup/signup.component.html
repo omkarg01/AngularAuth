@@ -84,6 +84,9 @@
                                         class="flex gap-2.5 justify-center items-center py-3.5 pr-24 pl-3.5 rounded-2xl bg-slate-200 min-h-[44px] max-md:pr-5 w-full" />
                                 </div>
                             </div>
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-red-500">
+                                <p class="text-xs mt-1" *ngIf="name.errors?.['required']">Full Name is required.</p>
+                            </div>
                             <div
                                 class="flex z-0 flex-col mt-6 max-w-full text-xs font-semibold whitespace-nowrap w-[333px]">
                                 <label for="org-name" class="text-sky-600">Enter Password : </label>
@@ -93,10 +96,22 @@
                                         class="flex gap-2.5 justify-center items-center py-3.5 pr-24 pl-3.5 rounded-2xl bg-slate-200 min-h-[44px] max-md:pr-5 w-full" />
                                 </div>
                             </div>
-                            <button type="submit" (click)="next($event)"
+                            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-red-500">
+                                <p class="text-xs mt-1" *ngIf="password.errors?.['required']">Password is required.</p>
+                                <p class="text-xs mt-1" *ngIf="password.errors?.['minlength']">Minimum 8 characters
+                                    required.</p>
+                            </div>
+                            <button type="submit" (click)="next($event)" [disabled]="password.invalid || name.invalid"
+                                [ngClass]="{ 
+                                'bg-sky-600 text-neutral-100': !password.invalid || !name.invalid,
+                                'bg-gray-400 text-gray-200': password.invalid || name.invalid,
+                                'cursor-pointer': !password.invalid || !name.invalid,
+                                'cursor-not-allowed opacity-70': password.invalid || name.invalid
+                              }"
                                 class="gap-2.5 self-stretch p-2.5 mt-6 max-w-full text-xs font-semibold whitespace-nowrap bg-sky-600 rounded-2xl text-neutral-100 w-[332px]">
                                 Next
                             </button>
+
                         </form>
                     </div>
                 </div>

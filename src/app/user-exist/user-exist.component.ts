@@ -10,11 +10,12 @@ import { MockDataService } from '../mock-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { setUserDetail } from '../store/actions/auth.action';
 import { subscribe } from 'diagnostics_channel';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-exist',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule],
+  imports: [ReactiveFormsModule, HttpClientModule, CommonModule],
   templateUrl: './user-exist.component.html',
   styleUrl: './user-exist.component.scss',
 })
@@ -25,8 +26,7 @@ export class UserExistComponent {
   detailType!: string;
   email = new FormControl('');
   phone = new FormControl('');
-
-  // $users: Observable<User[]>;
+  emailOrPhoneError: boolean = false;
 
   constructor(
     private store: Store<{ auth: AuthState }>,
@@ -48,10 +48,12 @@ export class UserExistComponent {
 
   ngOnInit() {}
 
-  next() {
+  next(e: Event) {
+    e.preventDefault()
     console.log('form email', this.email.value);
     console.log('form phone', this.phone.value);
-    if (this.email.value) {
+
+    if (this.email.value?.trim()) {
       this.mockDataService.userExist(this.email.value).subscribe((result) => {
         console.log("result", result);
         this.store.dispatch(
@@ -67,7 +69,7 @@ export class UserExistComponent {
           this.router.navigate(['/signup']);
         }
       });
-    } else if (this.phone.value) {
+    } else if (this.phone.value?.trim()) {
       this.mockDataService.userExist(this.phone.value).subscribe((result) => {
         this.store.dispatch(
           setUserDetail({
@@ -82,6 +84,8 @@ export class UserExistComponent {
           this.router.navigate(['/signup']);
         }
       });
+    } else {
+      this.emailOrPhoneError = true;
     }
   }
 }

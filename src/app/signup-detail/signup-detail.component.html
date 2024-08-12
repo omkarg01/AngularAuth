@@ -67,16 +67,30 @@
                                 <label for="org-name" class="text-sky-600">Organisation-name</label>
                                 <div class="flex flex-col mt-1 w-full max-w-[333px] text-neutral-500">
                                     <input type="text" id="org-name" formControlName="orgName" name="orgName"
-                                        placeholder="Loremipsum@gmail.com"
+                                        placeholder="Organisation-name"
                                         class="flex gap-2.5 justify-center items-center py-3.5 pr-24 pl-3.5 rounded-2xl bg-slate-200 min-h-[44px] max-md:pr-5 w-full" />
+                                </div>
+
+                                <div *ngIf="signupDetailsForm.get('orgName')?.invalid && (signupDetailsForm.get('orgName')?.touched || signupDetailsForm.get('orgName')?.dirty)"
+                                    class="text-red-500">
+                                    <p class="text-xs mt-1"
+                                        *ngIf="signupDetailsForm.get('orgName')?.errors?.['required']">Organization Name
+                                        is
+                                        required.</p>
                                 </div>
                             </div>
                             <div class="flex z-0 flex-col mt-6 max-w-full text-xs font-semibold w-[333px]">
                                 <label for="org-id" class="text-sky-600">Organisation-id</label>
                                 <div class="flex flex-col mt-1 w-full max-w-[333px] text-neutral-500">
                                     <input type="text" id="org-id" formControlName="orgId" name="orgId"
-                                        placeholder="Full name"
+                                        placeholder="Organisation-id"
                                         class="flex gap-2.5 justify-center items-center py-2.5 pr-24 pl-3.5 rounded-2xl bg-slate-200 max-md:pr-5 w-full" />
+                                </div>
+                                <div *ngIf="signupDetailsForm.get('orgId')?.invalid && (signupDetailsForm.get('orgId')?.touched || signupDetailsForm.get('orgId')?.dirty)"
+                                    class="text-red-500">
+                                    <p class="text-xs mt-1"
+                                        *ngIf="signupDetailsForm.get('orgId')?.errors?.['required']">Organization Id is
+                                        required.</p>
                                 </div>
                             </div>
                             <div
@@ -87,6 +101,13 @@
                                         placeholder="Designation"
                                         class="flex gap-2.5 justify-center items-center py-2.5 pr-24 pl-3.5 rounded-2xl bg-slate-200 max-md:pr-5 w-full" />
                                 </div>
+                                <div *ngIf="signupDetailsForm.get('designation')?.invalid && (signupDetailsForm.get('designation')?.touched || signupDetailsForm.get('designation')?.dirty)"
+                                    class="text-red-500">
+                                    <p class="text-xs mt-1"
+                                        *ngIf="signupDetailsForm.get('designation')?.errors?.['required']">Designation
+                                        is
+                                        required.</p>
+                                </div>
                             </div>
                             <div
                                 class="flex z-0 flex-col mt-6 max-w-full text-xs font-semibold whitespace-nowrap w-[333px]">
@@ -95,6 +116,12 @@
                                     <input type="date" id="birth-date" formControlName="birthDate" name="birthDate"
                                         class="flex gap-2.5 justify-center items-center py-2.5 pr-24 pl-3.5 rounded-2xl bg-slate-200 max-md:pr-5 w-full" />
                                 </div>
+                                <div *ngIf="signupDetailsForm.get('birthDate')?.invalid && (signupDetailsForm.get('birthDate')?.touched || signupDetailsForm.get('birthDate')?.dirty)"
+                                    class="text-red-500">
+                                    <p class="text-xs mt-1"
+                                        *ngIf="signupDetailsForm.get('birthDate')?.errors?.['required']">Birth Date is
+                                        required.</p>
+                                </div>
                             </div>
                             <div
                                 class="flex z-0 flex-col mt-6 max-w-full text-xs font-semibold whitespace-nowrap w-[143px]">
@@ -102,6 +129,12 @@
                                 <div class="flex flex-col mt-1 w-full text-neutral-500">
                                     <input type="text" id="city" formControlName="city" name="city" placeholder="City"
                                         class="flex gap-2.5 justify-center items-center py-2.5 pr-16 pl-3.5 rounded-2xl bg-slate-200 max-md:pr-5 w-full" />
+                                </div>
+                                <div *ngIf="signupDetailsForm.get('city')?.invalid && (signupDetailsForm.get('city')?.touched || signupDetailsForm.get('city')?.dirty)"
+                                    class="text-red-500">
+                                    <p class="text-xs mt-1" *ngIf="signupDetailsForm.get('city')?.errors?.['required']">
+                                        City is
+                                        required.</p>
                                 </div>
                             </div>
                             <div
@@ -112,8 +145,23 @@
                                         placeholder="Pincode"
                                         class="flex gap-2.5 justify-center items-center py-2.5 pr-16 pl-3.5 rounded-2xl bg-slate-200 max-md:pr-5 w-full" />
                                 </div>
+                                <div *ngIf="signupDetailsForm.get('pincode')?.invalid && (signupDetailsForm.get('pincode')?.touched || signupDetailsForm.get('pincode')?.dirty)"
+                                    class="text-red-500">
+                                    <p class="text-xs mt-1"
+                                        *ngIf="signupDetailsForm.get('pincode')?.errors?.['required']">
+                                        Pincode is
+                                        required.</p>
+                                    <p class="text-xs mt-1"
+                                        *ngIf="signupDetailsForm.get('pincode')?.errors?.['minlength']">
+                                        Minimum 6 characters are required.</p>
+                                </div>
                             </div>
-                            <button type="submit"
+                            <button type="submit" [disabled]="signupDetailsForm.invalid" [ngClass]="{ 
+                                'bg-sky-600 text-neutral-100': !signupDetailsForm.invalid,
+                                'bg-gray-400 text-gray-200': signupDetailsForm.invalid,
+                                'cursor-pointer': !signupDetailsForm.invalid,
+                                'cursor-not-allowed opacity-70': signupDetailsForm.invalid
+                              }"
                                 class="gap-2.5 self-stretch p-2.5 mt-6 max-w-full text-xs font-semibold whitespace-nowrap bg-sky-600 rounded-2xl text-neutral-100 w-[332px]">
                                 Next
                             </button>
