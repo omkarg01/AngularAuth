@@ -1,5 +1,4 @@
-# Project Name
-# AuthApp 
+# Project Name - AuthApp
 
 ## Overview
 - Login and Signup Components: Implement user authentication with dedicated components for login and signup, providing a smooth user experience.
