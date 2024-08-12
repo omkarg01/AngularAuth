@@ -12,7 +12,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Clone the Repository
 
 - `git clone git@github.com:omkarg01/AngularAuth.git`
-- cd <repository-directory>
+- `cd <repository-directory>`
 
 ## Install Dependencies
 
