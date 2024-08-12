@@ -34,6 +34,13 @@ export class UserExistComponent {
     private route: ActivatedRoute,
     private mockDataService: MockDataService
   ) {
+    /**
+     * Subscribes to store selectors to retrieve and update user details and detail type.
+     *
+     * - Selects `userDetail` and `detailType` (`email` or `phone`) from the store.
+     * - Subscribes to `detailType` and `userDetail` observables, updating the component properties `detailType` and `userDetail` respectively.
+     * - Based on the `detailType`, patches the corresponding form control (`email` or `phone`) with the `userDetail` value.
+     */
     this.$userDetail = this.store.select((state) => state.auth.userDetail);
     this.$detailType = this.store.select((state) => state.auth.detailType);
     this.$detailType.subscribe((state) => (this.detailType = state));
@@ -46,46 +53,51 @@ export class UserExistComponent {
     }
   }
 
-  ngOnInit() {}
-
+  /**
+   * Handles form submission to determine user existence and navigate accordingly.
+   *
+   * @param e - The event object from the form submission, used to prevent default behavior.
+   */
   next(e: Event) {
-    e.preventDefault()
-    console.log('form email', this.email.value);
-    console.log('form phone', this.phone.value);
+    e.preventDefault();
 
-    if (this.email.value?.trim()) {
-      this.mockDataService.userExist(this.email.value).subscribe((result) => {
-        console.log("result", result);
-        this.store.dispatch(
-          setUserDetail({
-            userDetail: this.email.value || '',
-            detailType: 'email',
-            name: result.user?.name || ''
-          })
-        );
-        if (result.exists) {
-          this.router.navigate(['/login']);
-        } else {
-          this.router.navigate(['/signup']);
-        }
-      });
-    } else if (this.phone.value?.trim()) {
-      this.mockDataService.userExist(this.phone.value).subscribe((result) => {
-        this.store.dispatch(
-          setUserDetail({
-            userDetail: this.phone.value || '',
-            detailType: 'phone',
-            name: result.user?.name || ''
-          })
-        );
-        if (result.exists) {
-          this.router.navigate(['/login']);
-        } else {
-          this.router.navigate(['/signup']);
-        }
-      });
+    const emailValue = this.email.value?.trim();
+    const phoneValue = this.phone.value?.trim();
+
+    if (emailValue) {
+      this.checkUserExistence(emailValue, 'email');
+    } else if (phoneValue) {
+      this.checkUserExistence(phoneValue, 'phone');
     } else {
       this.emailOrPhoneError = true;
     }
+  }
+
+  /**
+   * Checks if a user exists based on the provided detail and type.
+   *
+   * @param userDetail - The user detail (email or phone number).
+   * @param detailType - The type of detail ('email' or 'phone').
+   */
+  private checkUserExistence(
+    userDetail: string,
+    detailType: 'email' | 'phone'
+  ) {
+    this.mockDataService.userExist(userDetail).subscribe((result) => {
+      console.log('result', result);
+
+      // Dispatch user details to the store.
+      this.store.dispatch(
+        setUserDetail({
+          userDetail: userDetail || '',
+          detailType: detailType,
+          name: result.user?.name || '',
+        })
+      );
+
+      // Navigate based on user existence.
+      const route = result.exists ? '/login' : '/signup';
+      this.router.navigate([route]);
+    });
   }
 }

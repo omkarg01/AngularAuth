@@ -56,7 +56,6 @@ export class LoginComponent {
 
   next(e: Event) {
     e.preventDefault()
-    // this.passwordError = false;
     if (this.emailOrPhone.value && this.password.value) {
       this.mockDataService
         .validatePassword(this.emailOrPhone.value, this.password.value)
@@ -66,7 +65,6 @@ export class LoginComponent {
             this.router.navigate(['/login-success']);
           } else {
             this.passwordError = true;
-            // alert('Passord is Incorrect!');
           }
         });
     }
