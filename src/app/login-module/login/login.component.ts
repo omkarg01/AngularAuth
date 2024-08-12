@@ -36,6 +36,14 @@ export class LoginComponent {
     private store: Store<{ auth: AuthState }>,
     private mockDataService: MockDataService
   ) {
+    /**
+     * Initializes component properties and updates based on store state.
+     *
+     * - Sets the page title to 'Login'.
+     * - Selects user details, detail type, and name from the store.
+     * - Subscribes to detail type and user detail observables to update component properties.
+     * - Disables and patches the email or phone field with the user detail value.
+     */
     this.titleService.setTitle('Login');
     this.$userDetail = this.store.select((state) => state.auth.userDetail);
     this.$detailType = this.store.select((state) => state.auth.detailType);
@@ -48,14 +56,20 @@ export class LoginComponent {
     console.log('detailType', this.detailType);
   }
 
-  ngOnInit() {}
-
   goBack() {
     this.router.navigate(['/']);
   }
 
+  /**
+   * Handles form submission for user authentication.
+   *
+   * @param e - The event object from the form submission.
+   *
+   * Prevents default action, then validates the password with `mockDataService`.
+   * On successful validation, navigates to the login success page; otherwise, sets an error flag.
+   */
   next(e: Event) {
-    e.preventDefault()
+    e.preventDefault();
     if (this.emailOrPhone.value && this.password.value) {
       this.mockDataService
         .validatePassword(this.emailOrPhone.value, this.password.value)

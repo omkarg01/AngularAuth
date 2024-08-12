@@ -30,6 +30,12 @@ export class SignupDetailComponent {
 
   constructor(private router: Router) {}
 
+  /**
+   * Handles form submission. Prevents default action, logs form values, 
+   * and navigates to the success page if the form is valid.
+   *
+   * @param e - The event object from the form submission.
+   */
   onSubmit(e: Event) {
     e.preventDefault();
     console.log(this.signupDetailsForm.value);

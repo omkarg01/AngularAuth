@@ -14,16 +14,32 @@ export class MockDataService {
 
   constructor() {}
 
+  /**
+   * Returns an observable of the list of users.
+   */
   getUsers(): Observable<User[]> {
     return of(this.users);
   }
 
+  /**
+   * Adds a new user to the list and returns an observable of the updated user list.
+   *
+   * @param user - The user to add.
+   */
   addUser(user: User): Observable<User[]> {
     this.users.push(user);
     return of(this.users);
   }
 
-  userExist(emailOrPhone: string): Observable<{ exists: boolean; user?: User }> {
+  /**
+   * Checks if a user with the given email or phone exists.
+   *
+   * @param emailOrPhone - The email or phone to check.
+   * @returns An observable with an object containing `exists` and optionally the found user.
+   */
+  userExist(
+    emailOrPhone: string
+  ): Observable<{ exists: boolean; user?: User }> {
     let foundUser: User | undefined;
     const exists = this.users.some((user) => {
       foundUser = user;
@@ -32,6 +48,13 @@ export class MockDataService {
     return of({ exists, user: foundUser });
   }
 
+  /**
+   * Validates the password for the given email or phone.
+   *
+   * @param emailOrPhone - The email or phone to check.
+   * @param password - The password to validate.
+   * @returns An observable of a boolean indicating if the password is correct.
+   */
   validatePassword(
     emailOrPhone: string,
     password: string
@@ -42,12 +65,5 @@ export class MockDataService {
         user.password === password
     );
     return of(valid);
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
   }
 }
