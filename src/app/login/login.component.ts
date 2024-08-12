@@ -27,6 +27,7 @@ export class LoginComponent {
   password = new FormControl('', [Validators.required]);
   showEmail: boolean = true;
   users: User[] = [];
+  passwordError = false;
 
   constructor(
     private titleService: Title,
@@ -44,6 +45,7 @@ export class LoginComponent {
 
     this.emailOrPhone.disable();
     this.emailOrPhone.patchValue(this.userDetail);
+    console.log('detailType', this.detailType);
   }
 
   ngOnInit() {}
@@ -52,15 +54,20 @@ export class LoginComponent {
     this.router.navigate(['/']);
   }
 
-  next() {
+  next(e: Event) {
+    e.preventDefault()
+    // this.passwordError = false;
     if (this.emailOrPhone.value && this.password.value) {
       this.mockDataService
         .validatePassword(this.emailOrPhone.value, this.password.value)
         .subscribe((result) => {
-          if (result){
-            this.router.navigate(['/login-success'])
+          console.log('result', result);
+          if (result) {
+            this.router.navigate(['/login-success']);
           } else {
-            alert("Passord is Incorrect!")
+            this.passwordError = true;
+            // alert('Passord is Incorrect!');
+            console.log('password is incoorect');
           }
         });
     }

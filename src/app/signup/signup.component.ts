@@ -46,7 +46,8 @@ export class SignupComponent {
     this.router.navigate(['/']);
   }
 
-  next() {
+  next(e: Event) {
+    e.preventDefault()
     if (this.password.value && this.name.value) {
       this.mockDataService
         .addUser({

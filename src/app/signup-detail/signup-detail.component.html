@@ -61,7 +61,7 @@
                             <div class="flex shrink-0 self-stretch my-auto h-2 bg-sky-600 rounded-[215px] w-[165px]">
                             </div>
                         </div>
-                        <form [formGroup]="signupDetailsForm" (ngSubmit)="onSubmit()">
+                        <form [formGroup]="signupDetailsForm" (ngSubmit)="onSubmit($event)">
                             <div
                                 class="flex z-0 flex-col mt-6 max-w-full text-xs font-semibold whitespace-nowrap w-[333px]">
                                 <label for="org-name" class="text-sky-600">Organisation-name</label>
