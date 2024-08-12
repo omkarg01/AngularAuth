@@ -9,6 +9,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - React Form with Validators: Manages form inputs and applies validators to ensure valid user input.
 - Tailwind CSS: Uses Tailwind CSS for styling, providing a modern and responsive design with utility-first classes.
 
+## Clone the Repository
+
+git clone git@github.com:omkarg01/AngularAuth.git
+cd <repository-directory>
+
 ## Install Dependencies
 
 Run `npm install` command to install the project dependencies.
