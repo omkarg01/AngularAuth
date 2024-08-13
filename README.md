@@ -1,7 +1,8 @@
 # Project Name - AuthApp
 
 ## Overview
-![Dev Interview Reference](https://github.com/user-attachments/assets/662e5f91-4c60-435e-b6ae-e650b64a9370)
+![Dev Interview Reference](https://github.com/user-attachments/assets/003a9af3-857e-4537-970c-169d452d105c)
+
 
 - Login and Signup Components: Implement user authentication with dedicated components for login and signup, providing a smooth user experience.
 - Router: Utilizes Angular Router for navigating between different views and managing routing within the application.
