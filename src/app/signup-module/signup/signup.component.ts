@@ -48,7 +48,10 @@ export class SignupComponent {
 
   next(e: Event) {
     e.preventDefault()
+    // Check if both password and name fields are filled
     if (this.password.value && this.name.value) {
+
+      // Create the user object with details
       this.mockDataService
         .addUser({
           [this.detailType]: this.userDetail,
@@ -57,6 +60,8 @@ export class SignupComponent {
         })
         .subscribe((result) => {
           console.log('user updated', result);
+
+          // Dispatch action to update user details in the store
           this.store.dispatch(
             setUserDetail({
               userDetail: this.userDetail,
@@ -64,6 +69,7 @@ export class SignupComponent {
               name: this.name.value || '',
             })
           );
+          // Navigate to the signup details page
           this.router.navigate(['/signup-details']);
         });
     }

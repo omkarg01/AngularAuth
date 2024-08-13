@@ -4,18 +4,15 @@ import { Store } from '@ngrx/store';
 import { AuthState as AuthState } from '../store/reducers/auth.reducer';
 import { Observable } from 'rxjs';
 import { User } from '../store/models/user.model';
-import { log } from 'console';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MockDataService } from '../mock-data.service';
-import { HttpClientModule } from '@angular/common/http';
 import { setUserDetail } from '../store/actions/auth.action';
-import { subscribe } from 'diagnostics_channel';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-exist',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './user-exist.component.html',
   styleUrl: './user-exist.component.scss',
 })

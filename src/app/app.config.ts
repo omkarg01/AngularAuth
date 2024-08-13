@@ -3,9 +3,18 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideStore } from '@ngrx/store';
-import { authReducer } from './store/reducers/auth.reducer';
+import { MetaReducer, provideStore } from '@ngrx/store';
+import { authReducer, AuthState } from './store/reducers/auth.reducer';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+
+// import { localStorageSync } from 'ngrx-store-localstorage';
+
+// export function localStorageSyncReducer(reducer: any): any {
+//   return localStorageSync({
+//     keys: ['auth'],
+//     rehydrate: true,
+//   })(reducer);
+// }
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -103,9 +103,9 @@
                             </div>
                             <button type="submit" (click)="next($event)" [disabled]="password.invalid || name.invalid"
                                 [ngClass]="{ 
-                                'bg-sky-600 text-neutral-100': !password.invalid || !name.invalid,
+                                'bg-sky-600 text-neutral-100': !password.invalid && !name.invalid,
                                 'bg-gray-400 text-gray-200': password.invalid || name.invalid,
-                                'cursor-pointer': !password.invalid || !name.invalid,
+                                'cursor-pointer': !password.invalid && !name.invalid,
                                 'cursor-not-allowed opacity-70': password.invalid || name.invalid
                               }"
                                 class="gap-2.5 self-stretch p-2.5 mt-6 max-w-full text-xs font-semibold whitespace-nowrap bg-sky-600 rounded-2xl text-neutral-100 w-[332px]">
