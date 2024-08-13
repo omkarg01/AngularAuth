@@ -2,8 +2,8 @@
 
 ## Sample Credentials
 - { email: 'test@example.com', name: 'John Doe', password: 'password123' },
-- { phone: '1234567890', name: 'Omkar Gujja', password: 'password456' },
-- 
+- { phone: '1234567890', name: 'Omkar Gujja', password: 'password456' }
+  
 ## Overview
 ![Dev Interview Reference](https://github.com/user-attachments/assets/003a9af3-857e-4537-970c-169d452d105c)
 - Login and Signup Components: Implement user authentication with dedicated components for login and signup, providing a smooth user experience.
