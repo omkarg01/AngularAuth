@@ -7,14 +7,14 @@ import { MetaReducer, provideStore } from '@ngrx/store';
 import { authReducer, AuthState } from './store/reducers/auth.reducer';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
-// import { localStorageSync } from 'ngrx-store-localstorage';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
-// export function localStorageSyncReducer(reducer: any): any {
-//   return localStorageSync({
-//     keys: ['auth'],
-//     rehydrate: true,
-//   })(reducer);
-// }
+export function localStorageSyncReducer(reducer: any): any {
+  return localStorageSync({
+    keys: ['auth'],
+    rehydrate: true,
+  })(reducer);
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,6 +22,8 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideStore({
       auth: authReducer,
+    }, {
+      metaReducers: [localStorageSyncReducer]
     }),
     provideHttpClient(withFetch()),
   ],
