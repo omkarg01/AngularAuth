@@ -7,12 +7,37 @@ import { Injectable } from '@angular/core';
   providedIn: 'root', // This ensures the service is available app-wide
 })
 export class MockDataService {
-  private users: User[] = [
-    { email: 'test@example.com', name: 'Name', password: 'password123' },
-    { phone: '1234567890', name: 'OG', password: 'password456' },
-  ];
+  // private users: User[] = [
+  //   { email: 'test@example.com', name: 'John Doe', password: 'password123' },
+  //   { phone: '1234567890', name: 'Omkar Gujja', password: 'password456' },
+  // ];
+  private storageKey = 'users'; // Key for localStorage
+  private users: User[] = []; // Class property to hold users
 
-  constructor() {}
+  constructor() {
+    this.loadInitialData();
+  }
+
+  /**
+   * Initializes the service by loading users from localStorage.
+   */
+  private loadInitialData(): void {
+    const usersJson = localStorage.getItem(this.storageKey);
+    if (usersJson) {
+      this.users = JSON.parse(usersJson);
+    } else {
+      // If no data in localStorage, initialize with default users
+      this.users = [
+        {
+          email: 'test@example.com',
+          name: 'John Doe',
+          password: 'password123',
+        },
+        { phone: '1234567890', name: 'Omkar Gujja', password: 'password456' },
+      ];
+      this.saveUsersToStorage(); // Save initial data to localStorage
+    }
+  }
 
   /**
    * Returns an observable of the list of users.
@@ -65,5 +90,12 @@ export class MockDataService {
         user.password === password
     );
     return of(valid);
+  }
+
+  /**
+   * Saves users to localStorage.
+   */
+  saveUsersToStorage(): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.users));
   }
 }

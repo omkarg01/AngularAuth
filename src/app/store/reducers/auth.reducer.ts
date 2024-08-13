@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { User } from '../models/user.model';
-import { setUserDetail } from '../actions/auth.action';
+import { removeUserDetail, setUserDetail } from '../actions/auth.action';
 
 export type AuthState = {
   name?: string;
@@ -22,5 +22,10 @@ export const authReducer = createReducer(
     userDetail,
     detailType,
     name,
+  })),
+  on(removeUserDetail, (state) => ({
+    userDetail: '',
+    detailType: '',
+    name: '',
   }))
 );
