@@ -19,7 +19,7 @@
 
 ## Install Dependencies
 
-Run `npm install` command to install the project dependencies.
+Run `npm install --force` command to install the project dependencies.
 
 ## Development server
 
